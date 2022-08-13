@@ -3,8 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Header } from './components/Header';
+import { Toaster } from 'react-hot-toast';
+import { GlobalProvider } from './context/globalContext';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <GlobalProvider>
+    <Header />
+    <App />
+    <Toaster 
+      position="top-right"
+    />
+  </GlobalProvider>, 
+  document.getElementById('root')
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
