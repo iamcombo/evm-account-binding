@@ -31,7 +31,7 @@ export default function App() {
           <h1 className="text-2xl text-center text-[#f5f5f5] font-bold tracking-wider">EVM Accounts Binding</h1>
           <label className='block mt-4'>EVM Private Key:</label>
           <input value={privateKey} onChange={e => setPrivateKey(e.target.value)} type="text" placeholder="EVM Private key" className="bg-transparent input text-[#f5f5f5] input-bordered input-warning w-full max-w-md mt-2 rounded-full" />
-          <label className='block mt-4'>Mnemonic:</label>
+          <label className='block mt-4'>Substrate Mnemonic:</label>
           <input type='text' value={mnemonic} onChange={e => setMnemonic(e.target.value)} placeholder="Mnemonic" className="bg-transparent input text-[#f5f5f5] input-bordered input-warning w-full max-w-md mt-2 rounded-full" />
           <button onClick={handleBind} className={`btn btn-warning w-full max-w-md mt-4 rounded-full ${loading ? 'loading' : ''}`}>Bind Account</button>
         </div>
