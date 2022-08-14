@@ -4,10 +4,8 @@ import { bindAccount } from './libs/bindAccount';
 import { shortenAddress } from './utils';
 
 export default function App() {
-  const { keyring } = useGlobal();
   const [privateKey, setPrivateKey] = useState("");
   const [mnemonic, setMnemonic] = useState("");
-  const [evmProvider, setEvmProvider] = useState("https://testnet-evm.selendra.org");
   const [loading, setLoading] = useState(false);
   // const wallet = localStorage.getItem('current-account') ? shortenAddress(localStorage.getItem('current-account')) : '';
 
@@ -15,9 +13,9 @@ export default function App() {
     try {
       setLoading(true);
       await bindAccount({
-        substrateProvider: "wss://rpc-testnet.selendra.org", 
+        substrateProvider: localStorage.getItem('substrate'), 
         privateKey, 
-        evmProvider, 
+        evmProvider: localStorage.getItem('evm'), 
         mnemonic,
       });
       setLoading(false);
@@ -31,8 +29,6 @@ export default function App() {
       <div className="flex justify-center">
         <div className="card inline-block p-4 mt-8">
           <h1 className="text-2xl text-center text-[#f5f5f5] font-bold tracking-wider">EVM Accounts Binding</h1>
-          <label className='block mt-4'>EVM Provider:</label>
-          <input value={evmProvider} onChange={e => setEvmProvider(e.target.value)} type="text" placeholder="EVM Private key" className="bg-transparent input text-[#f5f5f5] input-bordered input-warning w-full max-w-md mt-2 rounded-full" />
           <label className='block mt-4'>EVM Private Key:</label>
           <input value={privateKey} onChange={e => setPrivateKey(e.target.value)} type="text" placeholder="EVM Private key" className="bg-transparent input text-[#f5f5f5] input-bordered input-warning w-full max-w-md mt-2 rounded-full" />
           <label className='block mt-4'>Mnemonic:</label>
